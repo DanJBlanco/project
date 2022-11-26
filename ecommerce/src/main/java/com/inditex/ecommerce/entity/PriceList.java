@@ -3,34 +3,24 @@ package com.inditex.ecommerce.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 
 @Entity
 @Table(name = "PRICES")
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class Products {
+@Data
+public class PriceList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "PRICE_LIST")
+    private String priceList;
+
     @Column(name = "PRODUCT_ID")
-    private String id;
+    private String productId;
 
     @Column(name = "BRAND_ID")
     private String brandId;
-
-    @Column(name = "START_DATE")
-    private Date startDate;
-
-    @Column(name = "END_DATE")
-    private Date endDate;
-
-    @Column(name = "PRICE_LIST")
-    private String priceList;
 
     @Column(name = "PRIORITY")
     private String priority;
@@ -40,6 +30,14 @@ public class Products {
 
     @Column(name = "CURR")
     private String currency;
+
+    @Column(name = "START_DATE")
+    private Timestamp startDate;
+
+    @Column(name = "END_DATE")
+    private Timestamp endDate;
+
+
 
 
 }
