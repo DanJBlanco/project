@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface ProductService {
 
-    List<PriceList> listProductsWithFilter(Map<String, String> filters);
+    List<PriceList> listPricesWithFilter(Map<String, String> filters);
 
 }

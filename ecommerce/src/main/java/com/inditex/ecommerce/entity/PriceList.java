@@ -1,7 +1,7 @@
 package com.inditex.ecommerce.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
 import java.sql.Timestamp;
 
