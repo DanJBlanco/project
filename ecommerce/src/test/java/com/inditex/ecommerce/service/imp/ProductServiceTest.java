@@ -3,7 +3,7 @@ package com.inditex.ecommerce.service.imp;
 import com.inditex.ecommerce.entity.PriceList;
 import com.inditex.ecommerce.mock.EntityMock;
 import com.inditex.ecommerce.repository.ProductRepository;
-import com.inditex.ecommerce.service.ProductService;
+import com.inditex.ecommerce.service.PriceListService;
 import com.inditex.ecommerce.utils.Properties;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +26,7 @@ public class ProductServiceTest {
     @Mock
     private ProductRepository productRepository;
     @Autowired
-    ProductService productService;
+    PriceListService priceListService;
 
 
     @BeforeEach
@@ -44,9 +44,9 @@ public class ProductServiceTest {
         Map<String, String> filters = new HashMap<>();
         filters.put(Properties.BRAND_ID.getKey(), "1");
         filters.put(Properties.PRODUCT_ID.getKey(), "35455");
-        filters.put(Properties.DATE_IN.getKey(), "2020-06-14 10:00:00");
+        filters.put(Properties.DATE_IN.getKey(), "2020-06-14-10.00.00");
 
-        List<PriceList> response = productService.listPricesWithFilter(filters);
+        List<PriceList> response = priceListService.listPricesWithFilter(filters);
 
         String expected = "1";
 
@@ -64,7 +64,7 @@ public class ProductServiceTest {
         filters.put(Properties.PRODUCT_ID.getKey(), "35455");
         filters.put(Properties.DATE_IN.getKey(), null);
 
-        List<PriceList> response = productService.listPricesWithFilter(filters);
+        List<PriceList> response = priceListService.listPricesWithFilter(filters);
 
         Assertions.assertNull(response);
     }
@@ -80,7 +80,7 @@ public class ProductServiceTest {
         filters.put(Properties.PRODUCT_ID.getKey(), "35455");
         filters.put(Properties.DATE_IN.getKey(), "2020-06-14 10:00:00");
 
-        List<PriceList> response = productService.listPricesWithFilter(filters);
+        List<PriceList> response = priceListService.listPricesWithFilter(filters);
 
 
         Assertions.assertNull(response);
@@ -97,7 +97,7 @@ public class ProductServiceTest {
         filters.put(Properties.PRODUCT_ID.getKey(), null);
         filters.put(Properties.DATE_IN.getKey(), "2020-06-14 10:00:00");
 
-        List<PriceList> response = productService.listPricesWithFilter(filters);
+        List<PriceList> response = priceListService.listPricesWithFilter(filters);
         Assertions.assertNull(response);
     }
     @Test
@@ -112,7 +112,7 @@ public class ProductServiceTest {
         filters.put(Properties.PRODUCT_ID.getKey(), "");
         filters.put(Properties.DATE_IN.getKey(), "2020-06-14 10:00:00");
 
-        List<PriceList> response = productService.listPricesWithFilter(filters);
+        List<PriceList> response = priceListService.listPricesWithFilter(filters);
         Assertions.assertNull(response);
     }
     @Test
@@ -127,7 +127,7 @@ public class ProductServiceTest {
         filters.put(Properties.PRODUCT_ID.getKey(), "35455");
         filters.put(Properties.DATE_IN.getKey(), "2020-06-14 10:00:00");
 
-        List<PriceList> response = productService.listPricesWithFilter(filters);
+        List<PriceList> response = priceListService.listPricesWithFilter(filters);
         Assertions.assertNull(response);
     }
     @Test
@@ -142,7 +142,7 @@ public class ProductServiceTest {
         filters.put(Properties.PRODUCT_ID.getKey(), "35455");
         filters.put(Properties.DATE_IN.getKey(), "");
 
-        List<PriceList> response = productService.listPricesWithFilter(filters);
+        List<PriceList> response = priceListService.listPricesWithFilter(filters);
         Assertions.assertNull(response);
     }
     @Test
@@ -157,7 +157,7 @@ public class ProductServiceTest {
         filters.put(Properties.PRODUCT_ID.getKey(), "35455");
         filters.put(Properties.DATE_IN.getKey(), "232/42/242 24122");
 
-        List<PriceList> response = productService.listPricesWithFilter(filters);
+        List<PriceList> response = priceListService.listPricesWithFilter(filters);
         Assertions.assertNull(response);
     }
 }
