@@ -1,6 +1,7 @@
 package com.inditex.ecommerce.service.imp;
 
 import com.inditex.ecommerce.entity.PriceList;
+import com.inditex.ecommerce.entity.PriceListResponse;
 import com.inditex.ecommerce.repository.ProductRepository;
 import com.inditex.ecommerce.service.PriceListService;
 import com.inditex.ecommerce.utils.Properties;
@@ -18,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class PriceListServiceImp implements PriceListService {

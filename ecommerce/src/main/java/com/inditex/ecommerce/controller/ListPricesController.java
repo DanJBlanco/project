@@ -1,6 +1,7 @@
 package com.inditex.ecommerce.controller;
 
 import com.inditex.ecommerce.entity.PriceList;
+import com.inditex.ecommerce.entity.PriceListResponse;
 import com.inditex.ecommerce.service.PriceListService;
 import com.inditex.ecommerce.utils.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/list-prices")
@@ -25,7 +24,7 @@ public class ListPricesController {
     private PriceListService  priceListService;
 
     @GetMapping("/{brandId}/{productId}/{date}")
-    public ResponseEntity<List<PriceList>> getPriceList(
+    public ResponseEntity<List<PriceListResponse>> getPriceList(
             @PathVariable String brandId,
             @PathVariable String productId,
             @PathVariable String date
@@ -45,7 +44,15 @@ public class ListPricesController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(
-                response
+                response.stream().map(priceList -> PriceListResponse.builder()
+                        .productId(priceList.getProductId())
+                        .brandId(priceList.getBrandId() )
+                        .priceList(priceList.getPriceList())
+                        .startDate(priceList.getStartDate())
+                        .endDate(priceList.getEndDate())
+                        .price(priceList.getPrice())
+                        .build())
+                .collect(Collectors.toList())
         );
     }
 }
